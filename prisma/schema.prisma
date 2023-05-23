@@ -1,0 +1,87 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = []
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  email     String     @unique
+  password  String
+  firstname String?
+  lastname  String?
+  mobile_no String?
+  orders    Order[]
+  products  Product[]
+  customer  Customer[]
+  role      Role
+  samples   Samples[]
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  author        User?    @relation(fields: [authorId], references: [id])
+  authorId      String?
+  published     Boolean
+  product_name  String
+  quantity      String
+  weight        String
+  customer      String
+  delivery_date String
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  author        User?    @relation(fields: [authorId], references: [id])
+  authorId      String?
+  published     Boolean
+  productName   String
+  maker         String
+  productWeight String
+  category      String
+  mfgDate       String
+  expDate       String
+}
+
+model Customer {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  author        User?    @relation(fields: [authorId], references: [id])
+  authorId      String? 
+  published     Boolean
+  name          String
+  address       String
+  mobile_number String
+}
+
+model Samples {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  author       User?    @relation(fields: [authorId], references: [id])
+  authorId     String?  
+  product_name String
+  price        String
+  quantity     String
+  weight       String
+}
+
+enum Role {
+  ADMIN
+  SALESMAN
+}

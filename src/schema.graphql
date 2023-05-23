@@ -1,0 +1,237 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+  user: User!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input CreateCustomerInput {
+  address: String!
+  mobile_number: String!
+  name: String!
+}
+
+input CreateOrderInput {
+  customer: String!
+  delivery_date: String!
+  product_name: String!
+  quantity: String!
+  weight: String!
+}
+
+input CreateProductInput {
+  category: String!
+  expDate: String!
+  maker: String!
+  mfgDate: String!
+  productName: String!
+  productWeight: String!
+}
+
+type Customer {
+  address: String!
+  author: User
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  mobile_number: String!
+  name: String!
+  published: Boolean!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type CustomerConnection {
+  edges: [CustomerEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum CustomerDirection {
+  asc
+  desc
+}
+
+type CustomerEdge {
+  cursor: String!
+  node: Customer!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  changePassword(data: ChangePasswordInput!): User!
+  createCustomer(data: CreateCustomerInput!): Customer!
+  createOrder(data: CreateOrderInput!): Order!
+  createProduct(data: CreateProductInput!): Product!
+  login(data: LoginInput!): Auth!
+  refreshToken(token: JWT!): Token!
+  signup(data: SignupInput!): Auth!
+  updateUser(data: UpdateUserInput!): User!
+}
+
+type Order {
+  author: User
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  customer: String!
+  delivery_date: String!
+  id: ID!
+  product_name: String!
+  published: Boolean!
+  quantity: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+  weight: String!
+}
+
+type OrderConnection {
+  edges: [OrderEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type OrderEdge {
+  cursor: String!
+  node: Order!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+input PostCustomer {
+  direction: CustomerDirection!
+  field: PostCustomerField!
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostCustomerField {
+  address
+  createdAt
+  id
+  mobile_number
+  name
+  published
+  updatedAt
+}
+
+type Product {
+  author: User
+  category: String!
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  expDate: String!
+  id: ID!
+  maker: String!
+  mfgDate: String!
+  productName: String!
+  productWeight: String!
+  published: Boolean!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type ProductConnection {
+  edges: [ProductEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProductEdge {
+  cursor: String!
+  node: Product!
+}
+
+type Query {
+  hello(name: String!): String!
+  helloWorld: String!
+  me: User!
+  post(customerId: String!): Customer!
+  publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostCustomer, query: String, skip: Int): CustomerConnection!
+  userPosts(userId: String!): [Customer!]!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  SALESMAN
+}
+
+input SignupInput {
+  email: String!
+  firstname: String
+  lastname: String
+  mobile_no: String
+  password: String!
+}
+
+type Subscription {
+  customerCreated: Customer!
+  orderCreated: Order!
+  productCreated: Product!
+}
+
+type Token {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+}
+
+input UpdateUserInput {
+  firstname: String
+  lastname: String
+}
+
+type User {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  email: String
+  firstname: String
+  id: ID!
+  lastname: String
+  mobile: String
+  orders: [Order!]
+  role: Role!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
