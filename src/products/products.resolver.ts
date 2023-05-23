@@ -55,63 +55,9 @@ export class ProductsResolver {
     return newPost;
   }
 
-  @Query(() => ProductConnection)
-  async publishedPosts(
-    @Args() { after, before, first, last }: PaginationArgs,
-    @Args({ name: 'query', type: () => String, nullable: true })
-    query: string,
-    @Args({
-      name: 'orderBy',
-      type: () => PostProduct,
-      nullable: true,
-    })
-    productBy: PostProduct
-  ) {
-    const a = await findManyCursorConnection(
-      (args) =>
-        this.prisma.product.findMany({
-          include: { author: true },
-          where: {
-            published: true,
-            productName: { contains: query || '' },
-          },
-          // productBy: productBy ? { [productBy.field]: productBy.direction } : undefined,
-          ...args,
-        }),
-      () =>
-        this.prisma.product.count({
-          where: {
-            published: true,
-            productName: { contains: query || '' },
-          },
-        }),
-      { first, last, before, after }
-    );
-    return a;
+  @Query(() => [Product], { name: 'allproductDetails' })
+  findAll() {
+    return this.prisma.product.findMany({});
   }
 
-  @Query(() => [Product])
-  userPosts(@Args() id: UserIdArgs) {
-    return this.prisma.user
-      .findUnique({ where: { id: id.userId } })
-      .orders({ where: { published: true } });
-
-    // or
-    // return this.prisma.posts.findMany({
-    //   where: {
-    //     published: true,
-    //     author: { id: id.userId }
-    //   }
-    // });
-  }
-
-  @Query(() => Product)
-  async post(@Args() id: ProductIdArgs) {
-    return this.prisma.product.findUnique({ where: { id: id.productId } });
-  }
-
-  @ResolveField('author', () => User)
-  async author(@Parent() product: Product) {
-    return this.prisma.product.findUnique({ where: { id: product.id } }).author();
-  }
 }

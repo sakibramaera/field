@@ -27,26 +27,13 @@ let UsersResolver = class UsersResolver {
         this.usersService = usersService;
         this.prisma = prisma;
     }
-    async me(user) {
-        return user;
-    }
     async updateUser(user, newUserData) {
         return this.usersService.updateUser(user.id, newUserData);
     }
     async changePassword(user, changePassword) {
         return this.usersService.changePassword(user.id, user.password, changePassword);
     }
-    orders(author) {
-        return this.prisma.user.findUnique({ where: { id: author.id } }).orders();
-    }
 };
-__decorate([
-    (0, graphql_1.Query)(() => user_model_1.User),
-    __param(0, (0, user_decorator_1.UserEntity)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_model_1.User]),
-    __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "me", null);
 __decorate([
     (0, common_1.UseGuards)(gql_auth_guard_1.GqlAuthGuard),
     (0, graphql_1.Mutation)(() => user_model_1.User),
@@ -67,13 +54,6 @@ __decorate([
         change_password_input_1.ChangePasswordInput]),
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "changePassword", null);
-__decorate([
-    (0, graphql_1.ResolveField)('orders'),
-    __param(0, (0, graphql_1.Parent)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_model_1.User]),
-    __metadata("design:returntype", void 0)
-], UsersResolver.prototype, "orders", null);
 UsersResolver = __decorate([
     (0, graphql_1.Resolver)(() => user_model_1.User),
     (0, common_1.UseGuards)(gql_auth_guard_1.GqlAuthGuard),

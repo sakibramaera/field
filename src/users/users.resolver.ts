@@ -23,10 +23,10 @@ export class UsersResolver {
     private prisma: PrismaService
   ) {}
 
-  @Query(() => User)
-  async me(@UserEntity() user: User): Promise<User> {
-    return user;
-  }
+  // @Query(() => User)
+  // async me(@UserEntity() user: User): Promise<User> {
+  //   return user;
+  // }
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
@@ -50,8 +50,8 @@ export class UsersResolver {
     );
   }
 
-  @ResolveField('orders')
-  orders(@Parent() author: User) {
-    return this.prisma.user.findUnique({ where: { id: author.id } }).orders();
-  }
+  // @ResolveField('orders')
+  // orders(@Parent() author: User) {
+  //   return this.prisma.user.findUnique({ where: { id: author.id } }).orders();
+  // }
 }
