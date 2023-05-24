@@ -132,6 +132,7 @@ input SignupInput {
   lastname: String
   mobile_no: String
   password: String!
+  role: Role
 }
 
 type Subscription {

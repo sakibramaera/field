@@ -27,7 +27,7 @@ let AuthService = class AuthService {
         const hashedPassword = await this.passwordService.hashPassword(payload.password);
         try {
             const user = await this.prisma.user.create({
-                data: Object.assign(Object.assign({}, payload), { password: hashedPassword, role: 'ADMIN' }),
+                data: Object.assign(Object.assign({}, payload), { password: hashedPassword, role: payload.role }),
             });
             return this.generateTokens({
                 userId: user.id,

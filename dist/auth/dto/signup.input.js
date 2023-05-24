@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignupInput = void 0;
 const class_validator_1 = require("class-validator");
 const graphql_1 = require("@nestjs/graphql");
+const client_1 = require("@prisma/client");
 let SignupInput = class SignupInput {
     static _GRAPHQL_METADATA_FACTORY() {
         return {};
@@ -40,6 +41,11 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], SignupInput.prototype, "mobile_no", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => client_1.Role, { nullable: true }),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], SignupInput.prototype, "role", void 0);
 SignupInput = __decorate([
     (0, graphql_1.InputType)()
 ], SignupInput);
