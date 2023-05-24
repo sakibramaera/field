@@ -30,7 +30,7 @@ export class ProductsResolver {
 
   @Subscription(() => Product)
   productCreated() {
-    return pubSub.asyncIterator('orderCreated');
+    return pubSub.asyncIterator('productCreated');
   }
 
   @UseGuards(GqlAuthGuard)

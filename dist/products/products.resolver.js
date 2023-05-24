@@ -28,7 +28,7 @@ let ProductsResolver = class ProductsResolver {
         this.prisma = prisma;
     }
     productCreated() {
-        return pubSub.asyncIterator('orderCreated');
+        return pubSub.asyncIterator('productCreated');
     }
     async addProduct(user, data) {
         const newProduct = this.prisma.product.create({

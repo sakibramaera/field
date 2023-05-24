@@ -27,6 +27,9 @@ let CustomersResolver = class CustomersResolver {
     constructor(prisma) {
         this.prisma = prisma;
     }
+    customerCreated() {
+        return pubSub.asyncIterator('customerCreated');
+    }
     async addCustomer(user, data) {
         const newCustomer = this.prisma.customer.create({
             data: {
@@ -42,6 +45,12 @@ let CustomersResolver = class CustomersResolver {
         return this.prisma.customer.findMany({});
     }
 };
+__decorate([
+    (0, graphql_1.Subscription)(() => customer_model_1.Customer),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], CustomersResolver.prototype, "customerCreated", null);
 __decorate([
     (0, common_1.UseGuards)(gql_auth_guard_1.GqlAuthGuard),
     (0, graphql_1.Mutation)(() => customer_model_1.Customer),

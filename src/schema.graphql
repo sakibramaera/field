@@ -135,6 +135,7 @@ input SignupInput {
 }
 
 type Subscription {
+  customerCreated: Customer!
   orderCreated: Order!
   productCreated: Product!
 }

@@ -28,10 +28,10 @@ const pubSub = new PubSub();
 export class CustomersResolver {
   constructor(private prisma: PrismaService) { }
 
-  // @Subscription(() => Customer)
-  // customerCreated() {
-  //   return pubSub.asyncIterator('orderCreated');
-  // }
+  @Subscription(() => Customer)
+  customerCreated() {
+    return pubSub.asyncIterator('customerCreated');
+  }
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => Customer)
