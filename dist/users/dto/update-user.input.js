@@ -24,6 +24,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], UpdateUserInput.prototype, "lastname", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "mobile_no", void 0);
 UpdateUserInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateUserInput);

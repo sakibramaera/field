@@ -7,10 +7,11 @@ import {
   ResolveField,
   Subscription,
   Mutation,
+  Int,
 } from '@nestjs/graphql';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { PubSub } from 'graphql-subscriptions';
-import { UseGuards } from '@nestjs/common';
+import { Delete, Param, UseGuards } from '@nestjs/common';
 import { PaginationArgs } from 'src/common/pagination/pagination.args';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { User } from 'src/users/models/user.model';
@@ -21,12 +22,14 @@ import { Customer } from './models/customer.model';
 import { CustomerConnection } from './models/customer-connection.model';
 import { PostCustomer } from './dto/post-customer.input';
 import { CreateCustomerInput } from './dto/createCustomer.input';
+import { customerService } from './customers.service';
+
 
 const pubSub = new PubSub();
 
 @Resolver(() => Customer)
 export class CustomersResolver {
-  constructor(private prisma: PrismaService) { }
+  constructor(private readonly CustomerService: customerService, private prisma: PrismaService) { }
 
   @Subscription(() => Customer)
   customerCreated() {
@@ -48,13 +51,18 @@ export class CustomersResolver {
         authorId: user.id,
       },
     });
-    // pubSub.publish('postCreated', { postCreated: newPost });
+    
     return newCustomer;
   }
 
   @Query(() => [Customer], { name: 'AllcustomerDetails' })
   findAll() {
     return this.prisma.customer.findMany({});
+  }
+
+  @Mutation(() => Customer)
+  removeCustomer(@Args('id') id: string) {
+    return this.CustomerService.remove(id);
   }
 
 }

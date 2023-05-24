@@ -4,6 +4,10 @@ import { BaseModel } from 'src/common/models/base.model';
 
 @ObjectType()
 export class Order extends BaseModel {
+  
+  @Field({ nullable: true })
+  id: string;
+
   @Field()
   product_name: string;
 

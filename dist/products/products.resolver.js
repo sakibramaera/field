@@ -22,9 +22,11 @@ const user_model_1 = require("../users/models/user.model");
 const gql_auth_guard_1 = require("../auth/gql-auth.guard");
 const product_model_1 = require("./models/product.model");
 const createProduct_input_1 = require("./dto/createProduct.input");
+const products_service_1 = require("./products.service");
 const pubSub = new graphql_subscriptions_1.PubSub();
 let ProductsResolver = class ProductsResolver {
-    constructor(prisma) {
+    constructor(ProductService, prisma) {
+        this.ProductService = ProductService;
         this.prisma = prisma;
     }
     productCreated() {
@@ -46,6 +48,9 @@ let ProductsResolver = class ProductsResolver {
     }
     findAll() {
         return this.prisma.product.findMany({});
+    }
+    removeProduct(id) {
+        return this.ProductService.remove(id);
     }
 };
 __decorate([
@@ -70,9 +75,16 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ProductsResolver.prototype, "findAll", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => product_model_1.Product),
+    __param(0, (0, graphql_1.Args)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductsResolver.prototype, "removeProduct", null);
 ProductsResolver = __decorate([
     (0, graphql_1.Resolver)(() => product_model_1.Product),
-    __metadata("design:paramtypes", [nestjs_prisma_1.PrismaService])
+    __metadata("design:paramtypes", [products_service_1.productService, nestjs_prisma_1.PrismaService])
 ], ProductsResolver);
 exports.ProductsResolver = ProductsResolver;
 //# sourceMappingURL=products.resolver.js.map

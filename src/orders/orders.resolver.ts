@@ -21,12 +21,13 @@ import { Order } from './models/order.model';
 import { OrderConnection } from './models/order-connection.model';
 import { PostOrder } from './dto/post-order.input';
 import { CreateOrderInput } from './dto/createOrder.input';
+import { orderService } from './orders.service';
 
 const pubSub = new PubSub();
 
 @Resolver(() => Order)
 export class OrdersResolver {
-  constructor(private prisma: PrismaService) { }
+  constructor(private readonly OrderService: orderService ,private prisma: PrismaService) { }
 
   @Subscription(() => Order)
   orderCreated() {
@@ -50,13 +51,18 @@ export class OrdersResolver {
         authorId: user.id,
       },
     });
-    // pubSub.publish('postCreated', { postCreated: newPost });
+  
     return newOrder;
   }
 
   @Query(() => [Order], { name: 'AllorderDetails' })
   findAll() {
     return this.prisma.order.findMany({});
+  }
+
+  @Mutation(() => Order)
+  removeOrder(@Args('id') id: string) {
+    return this.OrderService.remove(id);
   }
 
 }

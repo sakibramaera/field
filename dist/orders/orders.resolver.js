@@ -22,9 +22,11 @@ const user_model_1 = require("../users/models/user.model");
 const gql_auth_guard_1 = require("../auth/gql-auth.guard");
 const order_model_1 = require("./models/order.model");
 const createOrder_input_1 = require("./dto/createOrder.input");
+const orders_service_1 = require("./orders.service");
 const pubSub = new graphql_subscriptions_1.PubSub();
 let OrdersResolver = class OrdersResolver {
-    constructor(prisma) {
+    constructor(OrderService, prisma) {
+        this.OrderService = OrderService;
         this.prisma = prisma;
     }
     orderCreated() {
@@ -45,6 +47,9 @@ let OrdersResolver = class OrdersResolver {
     }
     findAll() {
         return this.prisma.order.findMany({});
+    }
+    removeOrder(id) {
+        return this.OrderService.remove(id);
     }
 };
 __decorate([
@@ -69,9 +74,16 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], OrdersResolver.prototype, "findAll", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => order_model_1.Order),
+    __param(0, (0, graphql_1.Args)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OrdersResolver.prototype, "removeOrder", null);
 OrdersResolver = __decorate([
     (0, graphql_1.Resolver)(() => order_model_1.Order),
-    __metadata("design:paramtypes", [nestjs_prisma_1.PrismaService])
+    __metadata("design:paramtypes", [orders_service_1.orderService, nestjs_prisma_1.PrismaService])
 ], OrdersResolver);
 exports.OrdersResolver = OrdersResolver;
 //# sourceMappingURL=orders.resolver.js.map

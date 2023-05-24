@@ -19,6 +19,10 @@ let Product = class Product extends base_model_1.BaseModel {
     }
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], Product.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, {}),
     __metadata("design:type", String)
 ], Product.prototype, "productName", void 0);

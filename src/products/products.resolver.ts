@@ -21,12 +21,13 @@ import { Product } from './models/product.model';
 import { ProductConnection } from './models/product-connection.model';
 import { PostProduct } from './dto/post-product.input';
 import { CreateProductInput } from './dto/createProduct.input';
+import { productService } from './products.service';
 
 const pubSub = new PubSub();
 
 @Resolver(() => Product)
 export class ProductsResolver {
-  constructor(private prisma: PrismaService) { }
+  constructor(private readonly ProductService : productService ,  private prisma: PrismaService) { }
 
   @Subscription(() => Product)
   productCreated() {
@@ -51,13 +52,18 @@ export class ProductsResolver {
         authorId: user.id,
       },
     });
-    // pubSub.publish('postCreated', { postCreated: newPost });
+    
     return newProduct;
   }
 
   @Query(() => [Product], { name: 'allproductDetails' })
   findAll() {
     return this.prisma.product.findMany({});
+  }
+
+  @Mutation(() => Product)
+  removeProduct(@Args('id') id: string) {
+    return this.ProductService.remove(id);
   }
 
 }

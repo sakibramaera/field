@@ -7,14 +7,15 @@ export class Customer extends BaseModel {
   @Field()
   name: string;
 
+  @Field({ nullable: true })
+  id: string;
+
   @Field()
   address: string;
 
   @Field()
   mobile_number: string;
 
-  // @Field(() => Boolean)
-  // published: boolean;
 
   @Field(() => User, { nullable: true })
   author?: User | null;

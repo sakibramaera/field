@@ -4,6 +4,10 @@ import { BaseModel } from 'src/common/models/base.model';
 
 @ObjectType()
 export class Product extends BaseModel {
+
+  @Field({ nullable: true })
+  id: string;
+  
   @Field()
   productName: string;
 

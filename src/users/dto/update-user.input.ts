@@ -4,6 +4,10 @@ import { InputType, Field } from '@nestjs/graphql';
 export class UpdateUserInput {
   @Field({ nullable: true })
   firstname?: string;
+
   @Field({ nullable: true })
   lastname?: string;
+
+  @Field({ nullable: true })
+  mobile_no?: string;
 }

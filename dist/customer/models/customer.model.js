@@ -23,6 +23,10 @@ __decorate([
     __metadata("design:type", String)
 ], Customer.prototype, "name", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], Customer.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, {}),
     __metadata("design:type", String)
 ], Customer.prototype, "address", void 0);

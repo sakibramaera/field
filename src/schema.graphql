@@ -45,7 +45,7 @@ type Customer {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  id: ID!
+  id: String
   mobile_number: String!
   name: String!
 
@@ -75,6 +75,9 @@ type Mutation {
   createOrder(data: CreateOrderInput!): Order!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  removeCustomer(id: String!): Customer!
+  removeOrder(id: String!): Order!
+  removeProduct(id: String!): Product!
   signup(data: SignupInput!): Auth!
   updateUser(data: UpdateUserInput!): User!
 }
@@ -86,7 +89,7 @@ type Order {
   createdAt: DateTime!
   customer: String!
   delivery_date: String!
-  id: ID!
+  id: String
   product_name: String!
   published: Boolean!
   quantity: String!
@@ -103,7 +106,7 @@ type Product {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   expDate: String!
-  id: ID!
+  id: String
   maker: String!
   mfgDate: String!
   productName: String!
@@ -152,17 +155,20 @@ type Token {
 input UpdateUserInput {
   firstname: String
   lastname: String
+  mobile_no: String
 }
 
 type User {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+  customer: [Customer!]
   email: String
   firstname: String
   id: ID!
   lastname: String
-  mobile: String
+  mobile_no: String
   orders: [Order!]
+  products: [Product!]
   role: Role!
 
   """Identifies the date and time when the object was last updated."""

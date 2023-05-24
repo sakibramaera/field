@@ -22,7 +22,7 @@ const user_model_1 = require("../users/models/user.model");
 const gql_auth_guard_1 = require("../auth/gql-auth.guard");
 const customer_model_1 = require("./models/customer.model");
 const createCustomer_input_1 = require("./dto/createCustomer.input");
-const products_service_1 = require("./products.service");
+const customers_service_1 = require("./customers.service");
 const pubSub = new graphql_subscriptions_1.PubSub();
 let CustomersResolver = class CustomersResolver {
     constructor(CustomerService, prisma) {
@@ -74,14 +74,14 @@ __decorate([
 ], CustomersResolver.prototype, "findAll", null);
 __decorate([
     (0, graphql_1.Mutation)(() => customer_model_1.Customer),
-    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
+    __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CustomersResolver.prototype, "removeCustomer", null);
 CustomersResolver = __decorate([
     (0, graphql_1.Resolver)(() => customer_model_1.Customer),
-    __metadata("design:paramtypes", [products_service_1.customerService, nestjs_prisma_1.PrismaService])
+    __metadata("design:paramtypes", [customers_service_1.customerService, nestjs_prisma_1.PrismaService])
 ], CustomersResolver);
 exports.CustomersResolver = CustomersResolver;
-//# sourceMappingURL=products.resolver.js.map
+//# sourceMappingURL=customers.resolver.js.map
