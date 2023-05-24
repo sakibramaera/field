@@ -39,9 +39,9 @@ export class OrdersResolver {
     @UserEntity() user: User,
     @Args('data') data: CreateOrderInput
   ) {
-    const newPost = this.prisma.order.create({
+    const newOrder = this.prisma.order.create({
       data: {
-        published: true,
+        // published: true,
         product_name: data.product_name,
         quantity: data.quantity,
         weight: data.weight,
@@ -51,7 +51,7 @@ export class OrdersResolver {
       },
     });
     // pubSub.publish('postCreated', { postCreated: newPost });
-    return newPost;
+    return newOrder;
   }
 
   @Query(() => [Order], { name: 'AllorderDetails' })

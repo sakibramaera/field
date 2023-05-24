@@ -24,7 +24,6 @@ Table Order {
   updatedAt DateTime [not null]
   author User
   authorId String
-  published Boolean [not null]
   product_name String [not null]
   quantity String [not null]
   weight String [not null]
@@ -38,7 +37,6 @@ Table Product {
   updatedAt DateTime [not null]
   author User
   authorId String
-  published Boolean [not null]
   productName String [not null]
   maker String [not null]
   productWeight String [not null]
@@ -53,7 +51,6 @@ Table Customer {
   updatedAt DateTime [not null]
   author User
   authorId String
-  published Boolean [not null]
   name String [not null]
   address String [not null]
   mobile_number String [not null]

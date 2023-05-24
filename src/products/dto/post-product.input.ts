@@ -6,7 +6,7 @@ export enum PostProductField {
   id = 'id',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  published = 'published',
+  // published = 'published',
   productName = 'productName',
   maker = 'maker',
   productWeight = 'productWeight',

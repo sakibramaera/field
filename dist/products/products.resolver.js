@@ -30,10 +30,9 @@ let ProductsResolver = class ProductsResolver {
     productCreated() {
         return pubSub.asyncIterator('orderCreated');
     }
-    async createProduct(user, data) {
-        const newPost = this.prisma.product.create({
+    async addProduct(user, data) {
+        const newProduct = this.prisma.product.create({
             data: {
-                published: true,
                 productName: data.productName,
                 maker: data.maker,
                 productWeight: data.productWeight,
@@ -43,7 +42,7 @@ let ProductsResolver = class ProductsResolver {
                 authorId: user.id,
             },
         });
-        return newPost;
+        return newProduct;
     }
     findAll() {
         return this.prisma.product.findMany({});
@@ -64,7 +63,7 @@ __decorate([
     __metadata("design:paramtypes", [user_model_1.User,
         createProduct_input_1.CreateProductInput]),
     __metadata("design:returntype", Promise)
-], ProductsResolver.prototype, "createProduct", null);
+], ProductsResolver.prototype, "addProduct", null);
 __decorate([
     (0, graphql_1.Query)(() => [product_model_1.Product], { name: 'allproductDetails' }),
     __metadata("design:type", Function),

@@ -15,7 +15,6 @@ var PostProductField;
     PostProductField["id"] = "id";
     PostProductField["createdAt"] = "createdAt";
     PostProductField["updatedAt"] = "updatedAt";
-    PostProductField["published"] = "published";
     PostProductField["productName"] = "productName";
     PostProductField["maker"] = "maker";
     PostProductField["productWeight"] = "productWeight";

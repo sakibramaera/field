@@ -15,7 +15,6 @@ var PostOrderField;
     PostOrderField["id"] = "id";
     PostOrderField["createdAt"] = "createdAt";
     PostOrderField["updatedAt"] = "updatedAt";
-    PostOrderField["published"] = "published";
     PostOrderField["product_name"] = "product_name";
     PostOrderField["quantity"] = "quantity";
     PostOrderField["weight"] = "weight";

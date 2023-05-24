@@ -28,16 +28,15 @@ let CustomersResolver = class CustomersResolver {
         this.prisma = prisma;
     }
     async addCustomer(user, data) {
-        const newPost = this.prisma.customer.create({
+        const newCustomer = this.prisma.customer.create({
             data: {
-                published: true,
                 name: data.name,
                 address: data.address,
                 mobile_number: data.mobile_number,
                 authorId: user.id,
             },
         });
-        return newPost;
+        return newCustomer;
     }
     findAll() {
         return this.prisma.customer.findMany({});

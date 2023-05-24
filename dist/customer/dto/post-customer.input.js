@@ -15,7 +15,6 @@ var PostCustomerField;
     PostCustomerField["id"] = "id";
     PostCustomerField["createdAt"] = "createdAt";
     PostCustomerField["updatedAt"] = "updatedAt";
-    PostCustomerField["published"] = "published";
     PostCustomerField["name"] = "name";
     PostCustomerField["address"] = "address";
     PostCustomerField["mobile_number"] = "mobile_number";

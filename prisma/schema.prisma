@@ -34,7 +34,7 @@ model Order {
   updatedAt     DateTime @updatedAt
   author        User?    @relation(fields: [authorId], references: [id])
   authorId      String?
-  published     Boolean
+  // published     Boolean
   product_name  String
   quantity      String
   weight        String
@@ -48,7 +48,7 @@ model Product {
   updatedAt     DateTime @updatedAt
   author        User?    @relation(fields: [authorId], references: [id])
   authorId      String?
-  published     Boolean
+  // published     Boolean
   productName   String
   maker         String
   productWeight String
@@ -63,7 +63,7 @@ model Customer {
   updatedAt     DateTime @updatedAt
   author        User?    @relation(fields: [authorId], references: [id])
   authorId      String? 
-  published     Boolean
+  // published     Boolean
   name          String
   address       String
   mobile_number String

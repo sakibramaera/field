@@ -31,10 +31,6 @@ __decorate([
     __metadata("design:type", String)
 ], Customer.prototype, "mobile_number", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, {}),
-    __metadata("design:type", Boolean)
-], Customer.prototype, "published", void 0);
-__decorate([
     (0, graphql_1.Field)(() => user_model_1.User, { nullable: true }),
     __metadata("design:type", user_model_1.User)
 ], Customer.prototype, "author", void 0);

@@ -35,13 +35,13 @@ export class ProductsResolver {
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => Product)
-  async createProduct(
+  async addProduct(
     @UserEntity() user: User,
     @Args('data') data: CreateProductInput
   ) {
-    const newPost = this.prisma.product.create({
+    const newProduct = this.prisma.product.create({
       data: {
-        published: true,
+        // published: true,
         productName: data.productName,
         maker: data.maker,
         productWeight: data.productWeight,
@@ -52,7 +52,7 @@ export class ProductsResolver {
       },
     });
     // pubSub.publish('postCreated', { postCreated: newPost });
-    return newPost;
+    return newProduct;
   }
 
   @Query(() => [Product], { name: 'allproductDetails' })

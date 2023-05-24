@@ -39,9 +39,9 @@ export class CustomersResolver {
     @UserEntity() user: User,
     @Args('data') data: CreateCustomerInput
   ) {
-    const newPost = this.prisma.customer.create({
+    const newCustomer = this.prisma.customer.create({
       data: {
-        published: true,
+        // published: true,
         name: data.name,
         address: data.address,
         mobile_number: data.mobile_number,
@@ -49,7 +49,7 @@ export class CustomersResolver {
       },
     });
     // pubSub.publish('postCreated', { postCreated: newPost });
-    return newPost;
+    return newCustomer;
   }
 
   @Query(() => [Customer], { name: 'AllcustomerDetails' })

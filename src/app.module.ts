@@ -18,6 +18,7 @@ import { CustomersModule } from './customer/customers.module';
 
 
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
@@ -44,6 +45,7 @@ import { CustomersModule } from './customer/customers.module';
     OrdersModule,
     ProductsModule,
     CustomersModule,
+  
 
     
   ],

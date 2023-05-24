@@ -5,7 +5,7 @@ export enum PostOrderField {
   id = 'id',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  published = 'published',
+  // published = 'published',
   product_name = 'product_name',
   quantity = 'quantity',
   weight = 'weight',

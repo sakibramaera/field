@@ -31,9 +31,8 @@ let OrdersResolver = class OrdersResolver {
         return pubSub.asyncIterator('orderCreated');
     }
     async createOrder(user, data) {
-        const newPost = this.prisma.order.create({
+        const newOrder = this.prisma.order.create({
             data: {
-                published: true,
                 product_name: data.product_name,
                 quantity: data.quantity,
                 weight: data.weight,
@@ -42,7 +41,7 @@ let OrdersResolver = class OrdersResolver {
                 authorId: user.id,
             },
         });
-        return newPost;
+        return newOrder;
     }
     findAll() {
         return this.prisma.order.findMany({});

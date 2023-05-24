@@ -48,7 +48,6 @@ type Customer {
   id: ID!
   mobile_number: String!
   name: String!
-  published: Boolean!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
@@ -71,9 +70,9 @@ input LoginInput {
 
 type Mutation {
   addCustomer(data: CreateCustomerInput!): Customer!
+  addProduct(data: CreateProductInput!): Product!
   changePassword(data: ChangePasswordInput!): User!
   createOrder(data: CreateOrderInput!): Order!
-  createProduct(data: CreateProductInput!): Product!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!

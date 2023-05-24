@@ -5,7 +5,7 @@ export enum PostCustomerField {
   id = 'id',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  published = 'published',
+  // published = 'published',
   name = 'name',
   address = 'address',
   mobile_number = 'mobile_number',
